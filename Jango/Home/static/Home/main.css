@@ -1,0 +1,17 @@
+p{
+    color: blue;
+}
+h1{
+    color: gold;
+}
+a{
+    color: #092e20;
+}
+img{
+    border-radius: 8px;
+    border-color: #570808;
+    border-image: initial;
+}
+ul{
+    color: red;
+}

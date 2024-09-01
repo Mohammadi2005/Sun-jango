@@ -11,9 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_*c6#o34v#$(n)x5z7ptlkfl%)$yzf0$&8=6ehjo62e(k3t6z6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Home',
+    # 'home_page',
 ]
 
 MIDDLEWARE = [
@@ -43,9 +44,9 @@ ROOT_URLCONF = 'Jango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'templates'] # توی دایرکتوری های این بلاک دنبال فایل اچ تی ام ال میگرده
         ,
-        'APP_DIRS': True,
+        'APP_DIRS': True, # توی اپ های مختلف هم دنبال دایرکتوربی میگرده
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -101,11 +102,19 @@ USE_I18N = True
 
 USE_TZ = True
 
+# media files
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'uploads'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'Home/static',
+    BASE_DIR / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

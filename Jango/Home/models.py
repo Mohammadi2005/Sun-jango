@@ -6,7 +6,8 @@ class Article(models.Model):
     text = models.TextField(help_text="Enter your article text.")
     pub_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    is_show =models.BooleanField(default=True)
+    is_show = models.BooleanField(default=True)
+    image = models.ImageField(null=True, blank=True)
     auther = models.ForeignKey("Person", on_delete=models.CASCADE)
 # "Person", on_delete=models.CASCADE یععنی برو به مدل person و اگر هم person حذف شد مقالاتش هم حذف بشه
     def __str__(self): # هر وقت کلاس فراخوانی بشه تایتلش برگردونده میشه که توی ادمین پنل این اتفاق میوفته و تایتل هر مقاله نمایش داده میشه

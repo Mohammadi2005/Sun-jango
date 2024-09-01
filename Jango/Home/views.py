@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, Http404
 from .models import Article  # جدول رو از دیتابیس فراخونی
 # میکنم تا به اطلاعاتش دسترسی داشته باشم
 
@@ -7,6 +7,20 @@ from .models import Article  # جدول رو از دیتابیس فراخونی
 # Create your views here.
 
 def home(request):
-    art = Article.objects.all()
-    return HttpResponse(art)
-    # return HttpResponse("Hello World")
+    articles = Article.objects.all().filter(is_show=True)
+    context = {
+        'art':articles
+    }
+    return render(request, 'Home/home.html', context)
+
+def art_list(request):
+    articles = Article.objects.all().filter(is_show=True)
+    context = {
+        'article':articles
+    }
+    return render(request, 'Home/art_list.html', context)
+
+def detail(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+    return render(request, 'Home/detail.html', {'article':article})
+
