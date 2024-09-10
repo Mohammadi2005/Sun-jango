@@ -14,11 +14,17 @@
         <br>
         <p class="lead text-body-secondary">سایتی پر از داستان های کوتاه، جالب و سرگرم کننده برای فرزندان ایران زمین</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a href="{% url 'home:create_article' %}" class="btn btn-primary my-2">اضافه کردن داستان</a>
           <a href="#" class="btn btn-secondary my-2">Secondary action</a>
         </p>
       </div>
     </div>
+    <form action="" method="get">
+      <div class="form-group">
+        <input type="text" class="form-control" name="search" placeholder="Search in Articles">
+          <button type="submit" class="btn btn-primary my-3">Search</button>
+      </div>
+    </form>
   </section>
 
   <div class="album py-5 bg-body-tertiary">
@@ -44,6 +50,8 @@
             </div>
           </div>
         </div>
+          {% empty %}
+          <p class="text-danger">Article not found</p>
       {% endfor %}
 {% endblock %}
 

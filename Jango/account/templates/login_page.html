@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+<!--    <div class="row py-lg-5" style="background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;">-->
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-normal">داستان های کوتاه</h1>
+            <img class="background-image" src = "#" alt = ""/>
+        <br>
+        <p class="lead text-body-secondary">سایتی پر از داستان های کوتاه، جالب و سرگرم کننده برای فرزندان ایران زمین</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Login</a>
+          <a href="{% url 'home:home' %}" class="btn btn-secondary my-2">Home</a>
+        </p>
+      </div>
+    </div>
+</section>
+
+<form method="post" action="" novalidate>
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+<!--    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+      {{ form.Username }}
+      {% for error in form.Username.errors %}
+        {{ error }}
+      {% endfor %}
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+    <br>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+<!--    <input type="password" class="form-control" id="exampleInputPassword1">-->
+      {{ form.Password }}
+      {% for error in form.Password.errors %}
+        {{ error }}
+      {% endfor %}
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

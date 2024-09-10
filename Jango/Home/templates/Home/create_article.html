@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Create Article {% endblock %}
+
+{% block body %}
+<p class="text-warning">You Can Create Article With this form</p>
+<form novalidate enctype="multipart/form-data" class="form-control" method="post" action="{% url 'home:create_article' %}">
+  {% csrf_token %}
+<!--    <div class="row mb-4"></div>-->
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        {{ form.Title }}
+        <label class="form-label" for="form6Example1">Title</label>
+        <p class="text-info">{{ form.Title.help_text }}</p><!--ای که توی فرم مشخص کردم رو نمایش میده help_text -->
+       </div>
+      {% for error in form.Title.errors %}<!-- ارور های فیلد تایتل رو نشون میده -->
+        <p class="text-danger">{{ error }}</p>
+      {% endfor %}
+    </div>
+  <br>
+
+    <div class="col">
+      <div data-mdb-input-init class="form-outline">
+        {{ form.Text }}
+        <label class="form-label" for="">{{ form.Text.label }}</label><!-- نامی که برای لیبیل توی فرم گذاشتم رو نمایش میده -->
+      </div>
+      {% for error in form.Text.errors %}
+        <p class="text-danger">{{ error }}</p>
+      {% endfor %}
+    </div>
+  <br>
+    <div data-mdb-input-init class="form-outline mb-4">
+      {{ form.Image }}
+      <label class="form-label" for="form6Example3">Image</label>
+      {% for error in form.Image.errors %}
+        <p class="text-danger">{{ error }}</p>
+      {% endfor %}
+    </div>
+  <br>
+
+  <div data-mdb-input-init class="form-outline mb-4">
+    {{ form.is_show }}
+    <label class="form-label" for="form6Example4">Do you want show this story?</label>
+  </div>
+  <div data-mdb-input-init class="form-outline mb-4">
+    {{ form.auther }}
+    <label class="form-label" for="form6Example5">Enter id auther</label>
+  {% for error in form.auther.errors %}
+    <p class="text-danger">{{ error }}</p>
+  {% endfor %}
+  </div>
+<!--  {{ form.errors }}&lt;!&ndash; همه ارور هایی که توی فرم هست رو میده &ndash;&gt;-->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Create Article</button>
+</form>
+{% endblock %}
+
+
+<!--  &lt;!&ndash; 2 column grid layout with text inputs for the first and last names &ndash;&gt;-->
+
+
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Text input &ndash;&gt;-->
+<!--
+
+<!--  &lt;!&ndash; Text input &ndash;&gt;-->
+
+
+<!--  &lt;!&ndash; Email input &ndash;&gt;-->
+
+
+<!--  &lt;!&ndash; Number input &ndash;&gt;-->
+<!--  <div data-mdb-input-init class="form-outline mb-4">-->
+<!--    <input type="number" id="form6Example6" class="form-control" />-->
+<!--    <label class="form-label" for="form6Example6">Phone</label>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Message input &ndash;&gt;-->
+<!--  <div data-mdb-input-init class="form-outline mb-4">-->
+<!--    <textarea class="form-control" id="form6Example7" rows="4"></textarea>-->
+<!--    <label class="form-label" for="form6Example7">Additional information</label>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Checkbox &ndash;&gt;-->
+<!--  <div class="form-check d-flex justify-content-center mb-4">-->
+<!--    <input-->
+<!--      class="form-check-input me-2"-->
+<!--      type="checkbox"-->
+<!--      value=""-->
+<!--      id="form6Example8"-->
+<!--      checked-->
+<!--    />-->
+<!--    <label class="form-check-label" for="form6Example8"> Create an account? </label>-->
+<!--  </div>-->

@@ -4,3 +4,5 @@ from .models import Article, Person
 
 admin.site.register(Article)
 admin.site.register(Person)
+
+

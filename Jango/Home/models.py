@@ -2,12 +2,12 @@ from django.db import models
 
 # Create your models here.
 class Article(models.Model):
-    title = models.CharField(max_length=200, null=True, blank=True)
+    title = models.CharField(max_length=100) # , null=True, blank=True
     text = models.TextField(help_text="Enter your article text.")
     pub_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     is_show = models.BooleanField(default=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to="Home/image_article/")
     auther = models.ForeignKey("Person", on_delete=models.CASCADE)
 # "Person", on_delete=models.CASCADE یععنی برو به مدل person و اگر هم person حذف شد مقالاتش هم حذف بشه
     def __str__(self): # هر وقت کلاس فراخوانی بشه تایتلش برگردونده میشه که توی ادمین پنل این اتفاق میوفته و تایتل هر مقاله نمایش داده میشه
@@ -25,4 +25,4 @@ class Person(models.Model):
 # decimal_places=2 یعنی دو تا رقم اعشاری میتونه داشته باشه
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} {self.id} "
