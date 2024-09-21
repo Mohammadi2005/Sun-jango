@@ -24,9 +24,7 @@
 
   </head>
   <body>
-
     {% include 'base/svg_ref.html' %}
-
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
@@ -61,24 +59,17 @@
         </li>
       </ul>
     </div>
-
     {% include 'base/header_ref.html' %}
-
 {% block body %}
-
 {% endblock %}
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
-
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col-lg-6 col-md-8 mx-auto">
-
-
         </div>
       </div>
     </div>
   </div>
-
 </main>
 
     {% include 'base/footer.html' with message="Sun learn" %}
@@ -86,4 +77,5 @@
 <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 
     </body>
+
 </html>
