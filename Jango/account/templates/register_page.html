@@ -19,50 +19,51 @@
       </div>
     </div>
 </section>
-    {% csrf token %}
+
 <form action="" method="post" novalidate>
+  {% csrf_token %}
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Username</label>
     {{ register_form.Username }}
-      {% for Error in register_form.Username.error %}
-        <p class="text-danger">{{ error }}</p>
+      {% for Error in register_form.Username.errors %}
+        <p class="text-danger">{{ Error }}</p>
       {% endfor %}
     <div id="emailHelp" class="form-text">We'll never share your User name with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Password</label>{{ register_form.Password }}
-      {% for Error in register_form.Password.error %}
-        <p class="text-danger">{{ error }}</p>
+      {% for Error in register_form.Password.errors %}
+        <p class="text-danger">{{ Error }}</p>
       {% endfor %}
       <div id="emailHelp" class="form-text">We'll never share your password with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Repassword</label>
       {{ register_form.Password_2 }}
-      {% for Error in register_form.Password_2.error %}
-        <p class="text-danger">{{ error }}</p>
+      {% for Error in register_form.Password_2.errors %}
+        <p class="text-danger">{{ Error }}</p>
       {% endfor %}
       <div id="emailHelp" class="form-text">We'll never share your password with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">First name</label>
     {{ register_form.FirstName }}
-      {% for Error in register_form.Firstname.error %}
-        <p class="text-danger">{{ error }}</p>
+      {% for Error in register_form.Firstname.errors %}
+        <p class="text-danger">{{ Error }}</p>
       {% endfor %}
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Last name</label>
       {{ register_form.LastName }}
-      {% for Error in register_form.Lastname.error %}
-        <p class="text-danger">{{ error }}</p>
+      {% for Error in register_form.Lastname.errors %}
+        <p class="text-danger">{{ Error }}</p>
       {% endfor %}
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     {{ register_form.Email }}
-      {% for Error in register_form.Email.error %}
-        <p class="text-danger">{{ error }}</p>
+      {% for Error in register_form.Email.errors %}
+        <p class="text-danger">{{ Error }}</p>
       {% endfor %}
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
@@ -70,3 +71,4 @@
 </form>
 
 {% endblock %}
+

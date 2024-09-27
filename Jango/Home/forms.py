@@ -18,5 +18,6 @@ class CreateArticleForm(forms.Form):
     def clean_Title(self):
         title = self.cleaned_data['Title']
         if 'iran' not in title.lower():
+            print("user")
             raise ValidationError('this title has to has word iran.')
         return title
