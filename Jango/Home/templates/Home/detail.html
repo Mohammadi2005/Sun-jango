@@ -11,9 +11,11 @@
     <div class="row py-lg-5" style="background-color: rgba(255, 255, 255, 0.4); padding: 20px; border-radius: 10px;">
      <div class="col-lg-6 col-md-8 mx-auto">
        <h1 class="fw-normal">{{ article.title }}</h1><br>
-       <p class="lead text-body-secondary">نویسنده : {{ article.auther }}</p>
-       <a href="#" class="btn btn-primary my-2"> بعد</a>
-       <a href="{% url 'home:art_list' %}" class="btn btn-secondary my-2">بـــازگــــشـــــت</a>
+       <p class="lead text-body-secondary">Auther : {{ article.auther.get_full_name }}</p>
+       {% if request.user.id == article.auther.id %}
+         <a href="{% url 'home:edit_article' article.id %}" class="btn btn-primary my-2">Edit</a>
+         <a href="{% url 'home:delete_article' article.id %}" class="btn btn-danger my-2">Delete</a>
+       {% endif %}
      </div>
     </div>
 </section>

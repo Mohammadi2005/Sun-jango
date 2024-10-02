@@ -1,10 +1,10 @@
 {% extends 'base/base.html' %}
 
-{% block title %} Create Article {% endblock %}
+{% block title %} Edit Article {% endblock %}
 
 {% block body %}
 <p class="text-warning">You Can Create Article With this form</p>
-<form novalidate enctype="multipart/form-data" class="form-control" method="post" action="{% url 'home:create_article' %}">
+<form novalidate enctype="multipart/form-data" class="form-control" method="post" action="{% url 'home:edit_article' article.id %}">
   {% csrf_token %}
 <!--    <div class="row mb-4"></div>-->
     <div class="col">
@@ -22,7 +22,7 @@
     <div class="col">
       <div data-mdb-input-init class="form-outline">
         {{ form.Text }}
-        <label class="form-label" for="">{{ form.Text.label }}</label><!-- نامی که برای لیبیل توی فرم گذاشتم رو نمایش میده -->
+        <label class="form-label" >{{ form.Text.label }}</label><!-- نامی که برای لیبیل توی فرم گذاشتم رو نمایش میده -->
       </div>
       {% for error in form.Text.errors %}
         <p class="text-danger">{{ error }}</p>
@@ -31,7 +31,8 @@
   <br>
     <div data-mdb-input-init class="form-outline mb-4">
       {{ form.Image }}
-      <label class="form-label" for="form6Example3">Image</label>
+      <a href="{{ article.image.url }}">Article image</a>
+<!--      <label class="form-label" for="form6Example3">Image</label>-->
       {% for error in form.Image.errors %}
         <p class="text-danger">{{ error }}</p>
       {% endfor %}
@@ -50,6 +51,6 @@
 <!--  {% endfor %}-->
 <!--  </div>-->
 <!--  {{ form.errors }}&lt;!&ndash; همه ارور هایی که توی فرم هست رو میده &ndash;&gt;-->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Create Article</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4">Update Article</button>
 </form>
 {% endblock %}

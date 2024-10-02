@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Article(models.Model):
@@ -8,7 +10,7 @@ class Article(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     is_show = models.BooleanField(default=True)
     image = models.ImageField(upload_to="Home/image_article/")
-    auther = models.ForeignKey("Person", on_delete=models.CASCADE)
+    auther = models.ForeignKey(User, on_delete=models.CASCADE) # این باعث میشه که فقط فردی از بین کاربران ثبت نام شده در این سایت رو بشه به عنوان نویسنده انتخاب کرد
 # "Person", on_delete=models.CASCADE یععنی برو به مدل person و اگر هم person حذف شد مقالاتش هم حذف بشه
     def __str__(self): # هر وقت کلاس فراخوانی بشه تایتلش برگردونده میشه که توی ادمین پنل این اتفاق میوفته و تایتل هر مقاله نمایش داده میشه
         return self.title
