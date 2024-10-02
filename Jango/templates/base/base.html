@@ -72,7 +72,10 @@
   </div>
 </main>
 
-    {% include 'base/footer.html' with message="Sun learn" %}
+    {% block pagination %}
+    {% endblock %}
+
+{% include 'base/footer.html' with message="Sun learn" %}
 
 <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
 

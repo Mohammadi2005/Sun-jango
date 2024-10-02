@@ -6,6 +6,7 @@ from .models import Article, Person  # جدول رو از دیتابیس فرا�
 # میکنم تا به اطلاعاتش دسترسی داشته باشم
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -23,8 +24,13 @@ def art_list(request):
     search_line = request.GET.get('search')
     if search_line:
         articles = articles.filter(title__icontains=search_line)
+
+    paginator = Paginator(articles, 3)
+    page_number = request.GET.get('page') # شماره صفحه ای رو که کاربر درخواست کرده رو دریافت میکنه
+    page_obj = paginator.get_page(page_number) # اطلاعات صفحه ی در خواست شده رو دریافت میکنه
+
     context = {
-        'article':articles
+        'page_obj':page_obj
     }
     return render(request, 'Home/art_list.html', context)
 
