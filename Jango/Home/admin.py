@@ -2,7 +2,18 @@ from django.contrib import admin
 from .models import Article, Person
 # Register your models here.
 
-admin.site.register(Article)
-admin.site.register(Person)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'auther', 'pub_date', 'is_show')
+    search_fields = ['title', 'pub_date']
+    list_filter = ['pub_date']
+    list_editable = ['is_show']
+    ordering = ['title']
+
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'email')
+    search_fields = ('first_name', 'last_name')
+
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(Person, PersonAdmin)
 
 
