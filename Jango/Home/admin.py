@@ -8,6 +8,19 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
     list_editable = ['is_show']
     ordering = ['title']
+    fieldsets = [
+        [
+            'Article info',
+            {'fields': ['title', 'text', 'image', 'is_show'],
+             'classes': ['collapse']},
+        ],
+        [
+            'Auther info',
+            {'fields': ['auther',]},
+        ]
+    ]
+    raw_id_fields = ['auther']
+
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email')
