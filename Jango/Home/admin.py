@@ -24,7 +24,7 @@ class ArticleAdmin(admin.ModelAdmin):
     fieldsets = [
         [
             'Article info',
-            {'fields': ['title', 'text', 'image', 'is_show'],
+            {'fields': ['title', 'text', 'image', 'is_show', 'categoreis'],
              'classes': ['collapse']},
         ],
         [
