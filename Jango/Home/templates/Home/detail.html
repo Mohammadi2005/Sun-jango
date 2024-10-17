@@ -25,4 +25,8 @@
         <br>
         <h4>{{ article.updated_date }}</h4>
         <div>
+{% for cat in categories %}
+    <h6>{{ cat }}</h6>
+{% endfor %}
+
 {% endblock %}

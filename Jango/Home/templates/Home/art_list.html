@@ -9,7 +9,7 @@
     <div class="row py-lg-5">
 <!--    <div class="row py-lg-5" style="background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px;">-->
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-normal">داستان های کوتاه</h1>
+        <h1 class="fw-normal">{% if author %} Articles of {{ author.get_full_name }} {% else %} Articles {% endif %}</h1>
 
             <img class="background-image" src = "#" alt = ""/>
         <br>
@@ -27,6 +27,31 @@
       </div>
     </form>
   </section>
+
+<ul class="list-group">
+
+  {% for category in categories %}
+    <a href="{% url 'home:article_category' category.id %}"><li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ category }}
+        <span class="badge bg-primary rounded-pill">14</span>
+    </li></a>
+  {% endfor %}
+
+</ul>
+
+  <br><br><br>
+  <h3>   Author</h3>
+
+<ul class="list-group">
+
+  {% for author in authors %}
+    <a href="{% url 'home:article_author' author.id %}"><li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ author.get_full_name }}
+        <span class="badge bg-primary rounded-pill">14</span>
+    </li></a>
+  {% endfor %}
+
+</ul>
 
   <div class="album py-5 bg-body-tertiary">
     <div class="container">

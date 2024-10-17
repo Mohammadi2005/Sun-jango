@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden, Http404
 from . import forms
@@ -7,7 +8,7 @@ from .models import Article, Person  # جدول رو از دیتابیس فرا�
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-
+from category.models import Category
 
 # Create your views here.
 
@@ -21,6 +22,8 @@ def home(request):
 
 def art_list(request):
     articles = Article.objects.all().filter(is_show=True)
+    authors = User.objects.all()
+    categories = Category.objects.all()
     search_line = request.GET.get('search')
     if search_line:
         articles = articles.filter(title__icontains=search_line)
@@ -30,13 +33,17 @@ def art_list(request):
     page_obj = paginator.get_page(page_number) # اطلاعات صفحه ی در خواست شده رو دریافت میکنه
 
     context = {
-        'page_obj':page_obj
+        'page_obj':page_obj,
+        'categories':categories,
+        'authors':authors,
     }
     return render(request, 'Home/art_list.html', context)
 
 def detail(request, article_id):
     article = get_object_or_404(Article, id=article_id)
-    return render(request, 'Home/detail.html', {'article':article})
+    categories = article.categoreis.all()
+    print(categories)
+    return render(request, 'Home/detail.html', {'article':article, 'categories':categories})
 
 @login_required(login_url='/account/log_in/')
 def create_article(request):
@@ -95,4 +102,22 @@ def delete_article(request, article_id):
     art.delete()
     return redirect('home:art_list')
 
+def get_article_by_category(request, category_id):
+    articles = Article.objects.filter(categoreis=category_id)
+    paginator = Paginator(articles, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj':page_obj}
+    return render(request, 'Home/art_list.html', context)
+
+
+def get_article_by_author(request, author_id):
+    author = get_object_or_404(User, id=author_id)
+    articles = Article.objects.filter(auther_id=author_id)
+    paginator = Paginator(articles, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj':page_obj,
+               'author':author}
+    return render(request, 'Home/art_list.html', context)
 

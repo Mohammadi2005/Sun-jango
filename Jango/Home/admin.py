@@ -1,5 +1,8 @@
+from email.headerregistry import Group
+
 from django.contrib import admin, messages
 from .models import Article, Person
+
 
 # Register your models here.
 
@@ -41,5 +44,4 @@ class PersonAdmin(admin.ModelAdmin):
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Person, PersonAdmin)
-
 
